@@ -18,6 +18,12 @@ class HappinessController extends Controller
         return response()->json($happiness);
     }
 
+    public function getDataById($factoryId)
+    {
+        $notices = Happiness::where('factory_id', $factoryId)->get();
+        return response()->json($notices);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

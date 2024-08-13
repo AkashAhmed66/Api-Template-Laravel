@@ -16,7 +16,12 @@ class NoticeController extends Controller
         $notices = Notice::get();
         return response()->json($notices);
     }
-
+    
+    public function getDataById($factoryId)
+    {
+        $notices = Notice::where('factory_id', $factoryId)->get();
+        return response()->json($notices);
+    }
     /**
      * Show the form for creating a new resource.
      */

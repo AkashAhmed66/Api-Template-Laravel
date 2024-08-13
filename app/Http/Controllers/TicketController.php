@@ -17,6 +17,12 @@ class TicketController extends Controller
         return response()->json($ticket);
     }
 
+    public function getDataById($factoryId)
+    {
+        $notices = Ticket::where('factory_id', $factoryId)->get();
+        return response()->json($notices);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

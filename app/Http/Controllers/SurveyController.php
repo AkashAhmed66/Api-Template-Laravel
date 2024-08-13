@@ -17,6 +17,12 @@ class SurveyController extends Controller
         return response()->json($survey);
     }
 
+    public function getDataById($factoryId)
+    {
+        $notices = Survey::with('questions')->where('factory_id', $factoryId)->get();
+        return response()->json($notices);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
