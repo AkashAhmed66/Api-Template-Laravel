@@ -14,14 +14,14 @@ class HappinessController extends Controller
      */
     public function index()
     {
-        $happiness = Happiness::where('open_status', 1)->first();
+        $happiness = Happiness::with('happyQuestions')->get();
         return response()->json($happiness);
     }
 
     public function getDataById($factoryId)
     {
-        $notices = Happiness::where('factory_id', $factoryId)->get();
-        return response()->json($notices);
+        $happiness = Happiness::with('happyQuestions')->where('factory_id', $factoryId)->orWhere('factory_id', 0)->get();
+        return response()->json($happiness);
     }
 
     /**

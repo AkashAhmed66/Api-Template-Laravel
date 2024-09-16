@@ -19,7 +19,7 @@ class SurveyController extends Controller
 
     public function getDataById($factoryId)
     {
-        $notices = Survey::with('questions')->where('factory_id', $factoryId)->get();
+        $notices = Survey::with('questions')->where('factory_id', $factoryId)->orWhere('factory_id', 0)->get();
         return response()->json($notices);
     }
 

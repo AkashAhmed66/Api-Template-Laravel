@@ -30,16 +30,27 @@ class HappinessResponseController extends Controller
      */
     public function store(StoreHappinessResponseRequest $request)
     {
-        return HappinessResponse::create($request->all());
+        // return HappinessResponse::create($request->all());
+        $payloads = $request->questions;
+        foreach($payloads as $payload){
+            // dd($payload);
+            $happiness = new HappinessResponse();
+            $happiness->user_id=$payload['user_id']; 
+            $happiness->factory_id=$payload['factory_id']; 
+            $happiness->survey_id=$payload["survey_id"]; 
+            $happiness->answer=$payload['answer']; 
+            $happiness->question_id=$payload['question_id'];
+            $happiness->save();
+        }
+        return 1;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(HappinessResponse $hsppyResponse)
     {
-        $data = HappinessResponse::where('user_id', $id)->first();
-        return response()->json($data);
+        return $hsppyResponse;
     }
 
     /**
@@ -64,5 +75,13 @@ class HappinessResponseController extends Controller
     public function destroy(HappinessResponse $happinessResponse)
     {
         return $happinessResponse->delete();
+    }
+    public function getResponsesByUser(UpdateHappinessResponseRequest $request)
+    {
+        $data = null;
+        $data = HappinessResponse::where('user_id', $request['user_id'])->where('survey_id', $request['survey_id'])->first();
+
+        if($data) return 1;
+        else return 0;
     }
 }

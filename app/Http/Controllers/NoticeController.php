@@ -19,7 +19,7 @@ class NoticeController extends Controller
     
     public function getDataById($factoryId)
     {
-        $notices = Notice::where('factory_id', $factoryId)->get();
+        $notices = Notice::where('factory_id', $factoryId)->orWhere('factory_id', 0)->get();
         return response()->json($notices);
     }
     /**

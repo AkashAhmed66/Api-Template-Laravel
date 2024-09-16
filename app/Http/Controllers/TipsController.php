@@ -21,7 +21,7 @@ class TipsController extends Controller
 
     public function getDataById($factoryId)
     {
-        $notices = Tips::with('tipsCategory')->where('factory_id', $factoryId)->get();
+        $notices = Tips::with('tipsCategory')->where('factory_id', $factoryId)->orWhere('factory_id', 0)->get();
         return response()->json($notices);
     }
 
