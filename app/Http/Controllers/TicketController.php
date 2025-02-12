@@ -50,7 +50,7 @@ class TicketController extends Controller
         $ticket->title = $request->title;
         $ticket->details = $request->details;
         $ticket->factory_id = $request->factory_id;
-        $ticket->anonymus = 1;
+        $ticket->anonymus = $request->anonymus;
         $ticket->save();
 
         $responses = new TicketResponse();
