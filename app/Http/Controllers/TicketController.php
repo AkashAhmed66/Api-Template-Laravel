@@ -51,10 +51,14 @@ class TicketController extends Controller
         $ticket->details = $request->details;
         $ticket->factory_id = $request->factory_id;
         $ticket->anonymus = $request->anonymus;
+        $ticket->ticket_number = 'RES-' . $ticket->id;
+        $ticket->save();
+        
+        $ticket->ticket_number = 'RES-' . substr(str_repeat('0', 6) . $ticket->id, -6);
         $ticket->save();
 
         $responses = new TicketResponse();
-        $responses->response = "The Admin will contact you soon!";
+        $responses->response = "We are in the process of addressing your grievance, thank you.";
         $responses->ticket_id = $ticket->id;
         $responses->from = "admin";
         $responses->save();
