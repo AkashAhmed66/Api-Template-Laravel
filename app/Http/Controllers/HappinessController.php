@@ -14,7 +14,7 @@ class HappinessController extends Controller
      */
     public function index()
     {
-        $happiness = Happiness::with('happyQuestions')->get();
+        $happiness = Happiness::with('happyQuestions')->paginate(15);
         return response()->json($happiness);
     }
 

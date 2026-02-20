@@ -13,7 +13,7 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $notices = Notice::get();
+        $notices = Notice::paginate(15);
         return response()->json($notices);
     }
     

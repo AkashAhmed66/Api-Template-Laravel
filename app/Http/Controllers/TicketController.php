@@ -14,7 +14,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = Ticket::get();
+        $ticket = Ticket::paginate(15);
         return response()->json($ticket);
     }
 

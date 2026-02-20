@@ -19,7 +19,8 @@ class TrainingController extends Controller
     }
     public function index()
     {
-        //
+        $training = Training::paginate(15);
+        return response()->json($training);
     }
 
     /**

@@ -13,7 +13,8 @@ class TicketCategoryController extends Controller
      */
     public function index()
     {
-        
+        $ticketCategories = TicketCategory::paginate(15);
+        return response()->json($ticketCategories);
     }
 
     /**

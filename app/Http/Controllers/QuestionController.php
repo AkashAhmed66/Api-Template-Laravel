@@ -13,7 +13,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $question = Question::with('survey')->get();
+        $question = Question::with('survey')->paginate(15);
         return response()->json($question);
     }
 

@@ -13,9 +13,7 @@ class TipsController extends Controller
      */
     public function index()
     {
-    
-        $data = Tips::with('tipsCategory')->get();
-
+        $data = Tips::with('tipsCategory')->paginate(15);
         return response()->json($data);
     }
 

@@ -13,7 +13,7 @@ class TipsCategoryController extends Controller
      */
     public function index()
     {
-        $tipsCategory = TipsCategory::with('tips')->get();
+        $tipsCategory = TipsCategory::with('tips')->paginate(15);
         return response()->json($tipsCategory);
     }
 

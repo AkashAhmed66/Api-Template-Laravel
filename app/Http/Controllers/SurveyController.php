@@ -13,7 +13,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        $survey = Survey::with('questions')->get();
+        $survey = Survey::with('questions')->paginate(15);
         return response()->json($survey);
     }
 
